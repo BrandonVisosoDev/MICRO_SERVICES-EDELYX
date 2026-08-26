@@ -1,0 +1,55 @@
+<div class="page">
+  <div class="section-header">
+    <div class="title-group">
+      <div class="accent-bar"></div>
+      <span class="section-title">Títulos de trabajo</span>
+      <span class="count-badge">{{ titulos.length }} registros</span>
+    </div>
+    <div style="display: flex; gap: 0.75rem;">
+      <button class="add-btn" (click)="listar()" [disabled]="cargando"
+        style="background: transparent; border: 1px solid #333; color: #fff;">
+        {{ cargando ? 'Cargando...' : 'Listar' }}
+      </button>
+      <button *ngIf="titulos.length > 0" class="add-btn" (click)="ocultar()"
+        style="background: transparent; border: 1px solid #ff4d4f; color: #ff4d4f;">
+        Dejar de mostrar
+      </button>
+      <button class="add-btn" (click)="abrirCrear()">
+        <span>+</span> Agregar
+      </button>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table *ngIf="titulos.length > 0 && !cargando">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título de trabajo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let titulo of titulos">
+          <td class="muted">{{ titulo.jobTitleId }}</td>
+          <td>{{ titulo.jobTitle }}</td>
+          <td>
+            <div class="actions">
+              <button class="btn-edit" (click)="abrirEditar(titulo)">Editar</button>
+              <button class="btn-del" (click)="eliminar(titulo.jobTitleId)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="cargando" style="text-align: center; padding: 3rem; color: #999;">
+      Cargando registros...
+    </div>
+
+    <div *ngIf="!cargando && titulos.length === 0"
+      style="text-align: center; padding: 3rem; color: #999;">
+      No hay registros disponibles. Haz clic en "Listar" para obtener los datos.
+    </div>
+  </div>
+</div>

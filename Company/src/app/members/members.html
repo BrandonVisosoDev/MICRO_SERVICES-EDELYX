@@ -1,0 +1,25 @@
+<div class="page">
+  <div class="section-header">
+    <div class="accent-bar"></div>
+    <span class="section-title">Algunos miembros</span>
+    <span class="count-badge">{{ miembros.length }} registros</span>
+  </div>
+
+  <div *ngIf="cargando" style="text-align: center; padding: 2rem 0; color: #999;">
+    Cargando miembros...
+  </div>
+
+  <div class="grid" *ngIf="!cargando">
+    <div class="card" *ngFor="let m of miembros">
+      <div class="card-top">
+        <div class="arrow-btn">↗</div>
+        <div class="avatar">{{ m.initials }}</div>
+      </div>
+      <div class="card-bottom">
+        <div class="member-name">{{ m.fullName }}</div>
+        <div class="member-job">{{ m.jobTitleName }}</div>
+        <span class="member-dept">{{ m.departmentName }}</span>
+      </div>
+    </div>
+  </div>
+</div>

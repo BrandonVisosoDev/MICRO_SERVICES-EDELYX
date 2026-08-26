@@ -1,0 +1,49 @@
+<div class="page">
+  <button class="back-btn" (click)="volver()">
+    <span class="back-arrow">←</span> Volver a Departamentos
+  </button>
+
+  <div class="page-header">
+    <div class="accent-bar"></div>
+    <div class="header-text">
+      <span class="page-title">Eliminar Departamento</span>
+      <span class="page-subtitle">Esta acción no se puede deshacer</span>
+    </div>
+  </div>
+
+  <div class="form-card" *ngIf="departamento">
+    <div class="form-section">
+      <div class="section-label">Información del departamento</div>
+      <div class="form-grid single">
+        <div class="form-group">
+          <label>ID</label>
+          <input type="text" [value]="departamento.departmentId" disabled/>
+        </div>
+        <div class="form-group">
+          <label>Nombre del departamento</label>
+          <input type="text" [value]="departamento.departmentName" disabled/>
+        </div>
+      </div>
+    </div>
+
+    <div class="error-banner" *ngIf="error">
+      {{ error }}
+    </div>
+
+    <div class="form-footer">
+      <button class="btn-cancel" (click)="volver()">Cancelar</button>
+      <button class="btn-delete" (click)="eliminar()" [disabled]="cargando">
+        {{ cargando ? 'Eliminando...' : 'Confirmar eliminación' }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!departamento && !error"
+    style="text-align: center; padding: 3rem; color: #999;">
+    Cargando información...
+  </div>
+
+  <div class="error-banner" *ngIf="error && !departamento">
+    {{ error }}
+  </div>
+</div>

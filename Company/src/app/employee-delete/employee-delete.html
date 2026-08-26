@@ -1,0 +1,58 @@
+<div class="page">
+  <button class="back-btn" (click)="volver()">
+    <span class="back-arrow">←</span> Volver a Empleados
+  </button>
+
+  <div class="page-header">
+    <div class="accent-bar" style="background-color: #ff4d4f;"></div>
+    <div class="header-text">
+      <span class="page-title">Eliminar Empleado</span>
+      <span class="page-subtitle">¿Estás seguro de que deseas eliminar a este empleado?</span>
+    </div>
+  </div>
+
+  <div class="form-card" *ngIf="empleado">
+    <div class="form-section">
+      <div class="section-label">Información del empleado (solo lectura)</div>
+      <div class="form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="form-group" style="display: flex; flex-direction: column;">
+          <label style="color: #999; font-size: 0.9rem; margin-bottom: 0.3rem;">ID</label>
+          <input type="text" [value]="empleado.employeeId" readonly disabled
+            style="background: #222; border: 1px solid #333; color: #777; padding: 0.75rem; border-radius: 6px; cursor: not-allowed;"/>
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column;">
+          <label style="color: #999; font-size: 0.9rem; margin-bottom: 0.3rem;">Nombre</label>
+          <input type="text" [value]="empleado.firstName + ' ' + empleado.lastName" readonly disabled
+            style="background: #222; border: 1px solid #333; color: #777; padding: 0.75rem; border-radius: 6px; cursor: not-allowed;"/>
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column;">
+          <label style="color: #999; font-size: 0.9rem; margin-bottom: 0.3rem;">Email</label>
+          <input type="email" [value]="empleado.email" readonly disabled
+            style="background: #222; border: 1px solid #333; color: #777; padding: 0.75rem; border-radius: 6px; cursor: not-allowed;"/>
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column;">
+          <label style="color: #999; font-size: 0.9rem; margin-bottom: 0.3rem;">Teléfono</label>
+          <input type="text" [value]="empleado.phoneNumber" readonly disabled
+            style="background: #222; border: 1px solid #333; color: #777; padding: 0.75rem; border-radius: 6px; cursor: not-allowed;"/>
+        </div>
+      </div>
+    </div>
+    
+    <div class="error-msg" *ngIf="error" style="margin-top: 1rem; color: #ff4d4f;">{{ error }}</div>
+
+    <div class="form-footer" style="justify-content: flex-start; gap: 1rem; margin-top: 2rem;">
+      <button class="btn-del" (click)="eliminar()" [disabled]="cargando" style="padding: 0.75rem 1.5rem; background: rgba(255, 77, 79, 0.1); color: #ff4d4f; border: 1px solid rgba(255, 77, 79, 0.2); border-radius: 6px; cursor: pointer;">
+        {{ cargando ? 'Eliminando...' : 'Sí, eliminar empleado' }}
+      </button>
+      <button class="btn-cancel" (click)="volver()" style="padding: 0.75rem 1.5rem; background: transparent; color: #999; border: 1px solid #333; border-radius: 6px; cursor: pointer;">Cancelar</button>
+    </div>
+  </div>
+  
+  <div class="form-card" *ngIf="!empleado && !error">
+    <p style="color: #999;">Cargando información del empleado...</p>
+  </div>
+  
+  <div class="form-card" *ngIf="error && !empleado">
+    <p style="color: #ff4d4f;">{{ error }}</p>
+  </div>
+</div>

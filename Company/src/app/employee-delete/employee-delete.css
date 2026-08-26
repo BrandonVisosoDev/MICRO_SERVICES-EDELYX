@@ -1,0 +1,113 @@
+.page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+.back-btn:hover {
+  color: #fff;
+}
+
+.page-header {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.accent-bar {
+  width: 4px;
+  background: #ff4d4f;
+  border-radius: 2px;
+}
+.header-text {
+  display: flex;
+  flex-direction: column;
+}
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+}
+.page-subtitle {
+  color: #999;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.form-card {
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+.section-label {
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #222;
+}
+
+.employee-details p {
+  color: #ccc;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+.employee-details strong {
+  color: #fff;
+  display: inline-block;
+  width: 100px;
+}
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #222;
+}
+.btn-cancel {
+  background: transparent;
+  color: #999;
+  border: 1px solid #333;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-cancel:hover {
+  background: #222;
+  color: #fff;
+}
+.btn-del {
+  background: rgba(255, 77, 79, 0.1);
+  color: #ff4d4f;
+  border: 1px solid rgba(255, 77, 79, 0.2);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-del:hover {
+  background: rgba(255, 77, 79, 0.2);
+  border-color: rgba(255, 77, 79, 0.3);
+}
+.btn-del:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

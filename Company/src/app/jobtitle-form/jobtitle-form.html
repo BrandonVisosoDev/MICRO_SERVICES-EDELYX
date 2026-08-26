@@ -1,0 +1,43 @@
+<div class="page">
+  <button class="back-btn" (click)="volver()">
+    <span class="back-arrow">←</span> Volver a Títulos de trabajo
+  </button>
+
+  <div class="page-header">
+    <div class="accent-bar"></div>
+    <div class="header-text">
+      <span class="page-title">{{ modoEdicion ? 'Editar título de trabajo' : 'Nuevo título de trabajo' }}</span>
+      <span class="page-subtitle">{{ modoEdicion ? 'Modifica los datos del título' : 'Completa los campos para registrar un nuevo título' }}</span>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <div class="form-section">
+      <div class="section-label">Información del título</div>
+      <div class="form-grid single">
+        <div class="form-group">
+          <label>ID del título</label>
+          <input type="number" [(ngModel)]="jobTitleForm.jobTitleId" placeholder="1" [disabled]="modoEdicion"
+            [class.error]="errores['jobTitleId']" />
+          <span class="error-msg" *ngIf="errores['jobTitleId']">{{ errores['jobTitleId'] }}</span>
+        </div>
+        <div class="form-group">
+          <label>Título de trabajo</label>
+          <input type="text" [(ngModel)]="jobTitleForm.jobTitle"
+            placeholder="Gerente de Proyecto"
+            [class.error]="errores['jobTitle']" />
+          <span class="error-msg" *ngIf="errores['jobTitle']">
+            {{ errores['jobTitle'] }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <button class="btn-cancel" (click)="volver()">Cancelar</button>
+      <button class="btn-save" (click)="guardar()" [disabled]="cargando">
+        {{ cargando ? 'Guardando...' : modoEdicion ? 'Actualizar título' : 'Guardar título' }}
+      </button>
+    </div>
+  </div>
+</div>

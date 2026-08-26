@@ -1,0 +1,63 @@
+<div class="page">
+  <div class="section-header">
+    <div class="title-group">
+      <div class="accent-bar"></div>
+      <span class="section-title">Empleados</span>
+      <span class="count-badge">{{ empleados.length }} registros</span>
+    </div>
+    <div style="display: flex; gap: 0.75rem;">
+      <button class="add-btn" (click)="listar()" [disabled]="cargando" style="background: transparent; border: 1px solid #333; color: #fff;">
+        {{ cargando ? 'Cargando...' : 'Listar' }}
+      </button>
+      <button *ngIf="empleados.length > 0" class="add-btn" (click)="ocultar()" style="background: transparent; border: 1px solid #ff4d4f; color: #ff4d4f;">
+        Dejar de mostrar
+      </button>
+      <button class="add-btn" (click)="abrirCrear()">
+        <span>+</span> Agregar
+      </button>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table *ngIf="empleados.length > 0 && !cargando">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Salario</th>
+          <th>Contratación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of empleados">
+          <td class="muted">{{ emp.employeeId }}</td>
+          <td>{{ emp.firstName }} {{ emp.lastName }}</td>
+          <td class="muted">{{ emp.email }}</td>
+          <td class="muted">{{ emp.phoneNumber }}</td>
+          <td class="salary">{{ emp.salary | currency:'MXN' }}</td>
+          <td class="muted">{{ emp.hireDate }}</td>
+          <td>
+            <div class="actions">
+              <button class="btn-edit" (click)="abrirEditar(emp)">Editar</button>
+              <button class="btn-del" (click)="eliminar(emp.employeeId)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="cargando" style="text-align: center; padding: 3rem; color: #999;">
+      Cargando registros...
+    </div>
+    
+    <div *ngIf="!cargando && empleados.length === 0" style="text-align: center; padding: 3rem; color: #999;">
+      No hay registros disponibles. Haz clic en "Listar" para obtener los datos de la base de datos.
+    </div>
+  </div>
+</div>
+
+<app-members></app-members>
+

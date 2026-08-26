@@ -1,0 +1,43 @@
+<div class="page">
+  <button class="back-btn" (click)="volver()">
+    <span class="back-arrow">←</span> Volver a Departamentos
+  </button>
+
+  <div class="page-header">
+    <div class="accent-bar"></div>
+    <div class="header-text">
+      <span class="page-title">{{ modoEdicion ? 'Editar Departamento' : 'Nuevo Departamento' }}</span>
+      <span class="page-subtitle">{{ modoEdicion ? 'Modifica los datos del departamento' : 'Completa los campos para registrar un nuevo departamento' }}</span>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <div class="form-section">
+      <div class="section-label">Información del departamento</div>
+      <div class="form-grid single">
+        <div class="form-group">
+          <label>ID del departamento</label>
+          <input type="number" [(ngModel)]="departmentForm.departmentId" placeholder="1" [disabled]="modoEdicion"
+            [class.error]="errores['departmentId']" />
+          <span class="error-msg" *ngIf="errores['departmentId']">{{ errores['departmentId'] }}</span>
+        </div>
+        <div class="form-group">
+          <label>Nombre del departamento</label>
+          <input type="text" [(ngModel)]="departmentForm.departmentName"
+            placeholder="Recursos Humanos"
+            [class.error]="errores['departmentName']"/>
+          <span class="error-msg" *ngIf="errores['departmentName']">
+            {{ errores['departmentName'] }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <button class="btn-cancel" (click)="volver()">Cancelar</button>
+      <button class="btn-save" (click)="guardar()" [disabled]="cargando">
+        {{ cargando ? 'Guardando...' : modoEdicion ? 'Actualizar departamento' : 'Guardar departamento' }}
+      </button>
+    </div>
+  </div>
+</div>

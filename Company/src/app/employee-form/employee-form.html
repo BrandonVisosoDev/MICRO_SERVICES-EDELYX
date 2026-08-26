@@ -1,0 +1,84 @@
+<div class="page">
+  <button class="back-btn" (click)="volver()">
+    <span class="back-arrow">←</span> Volver a Empleados
+  </button>
+
+  <div class="page-header">
+    <div class="accent-bar"></div>
+    <div class="header-text">
+      <span class="page-title">{{ modoEdicion ? 'Editar Empleado' : 'Nuevo Empleado' }}</span>
+      <span class="page-subtitle">{{ modoEdicion ? 'Modifica los datos del empleado' : 'Completa los campos para registrar un nuevo empleado' }}</span>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <!-- Información personal -->
+    <div class="form-section">
+      <div class="section-label">Información personal</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" [(ngModel)]="empleadoForm.firstName" placeholder="Juan"
+            [class.error]="errores['firstName']"/>
+          <span class="error-msg" *ngIf="errores['firstName']">{{ errores['firstName'] }}</span>
+        </div>
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" [(ngModel)]="empleadoForm.lastName" placeholder="García"
+            [class.error]="errores['lastName']"/>
+          <span class="error-msg" *ngIf="errores['lastName']">{{ errores['lastName'] }}</span>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="empleadoForm.email" placeholder="juan@edelyx.com"
+            [class.error]="errores['email']"/>
+          <span class="error-msg" *ngIf="errores['email']">{{ errores['email'] }}</span>
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="text" [(ngModel)]="empleadoForm.phoneNumber" placeholder="7771234567"
+            [class.error]="errores['phoneNumber']"/>
+          <span class="error-msg" *ngIf="errores['phoneNumber']">{{ errores['phoneNumber'] }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información laboral -->
+    <div class="form-section">
+      <div class="section-label">Información laboral</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Salario</label>
+          <input type="number" [(ngModel)]="empleadoForm.salary" placeholder="15000"
+            [class.error]="errores['salary']"/>
+          <span class="error-msg" *ngIf="errores['salary']">{{ errores['salary'] }}</span>
+        </div>
+        <div class="form-group">
+          <label>Fecha de contratación</label>
+          <input type="date" [(ngModel)]="empleadoForm.hireDate"
+            [class.error]="errores['hireDate']"/>
+          <span class="error-msg" *ngIf="errores['hireDate']">{{ errores['hireDate'] }}</span>
+        </div>
+        <div class="form-group">
+          <label>ID Departamento</label>
+          <input type="number" [(ngModel)]="empleadoForm.departmentId" placeholder="1"
+            [class.error]="errores['departmentId']"/>
+          <span class="error-msg" *ngIf="errores['departmentId']">{{ errores['departmentId'] }}</span>
+        </div>
+        <div class="form-group">
+          <label>ID Job Title</label>
+          <input type="number" [(ngModel)]="empleadoForm.jobTitleId" placeholder="1"
+            [class.error]="errores['jobTitleId']"/>
+          <span class="error-msg" *ngIf="errores['jobTitleId']">{{ errores['jobTitleId'] }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <button class="btn-cancel" (click)="volver()">Cancelar</button>
+      <button class="btn-save" (click)="guardar()" [disabled]="cargando">
+        {{ cargando ? 'Guardando...' : modoEdicion ? 'Actualizar empleado' : 'Guardar empleado' }}
+      </button>
+    </div>
+  </div>
+</div>
